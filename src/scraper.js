@@ -1,10 +1,32 @@
 import fetch from "node-fetch";
 import fs from "fs";
+import readline from "readline";
 
 const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
+// Setup keyboard listening for "q" event
+readline.emitKeypressEvents(process.stdin);
+if (process.stdin.isTTY) {
+    process.stdin.setRawMode(true);
+}
+
+let keepRunning = true;
+
+process.stdin.on('keypress', (str, key) => {
+    // Allow normal exit via Ctrl+C
+    if (key.ctrl && key.name === 'c') {
+        process.exit();
+    }
+    // Check for 'q' to gracefully stop
+    if (str === 'q') {
+        console.log('\n[Stop signal caught. Finishing current operation...]');
+        keepRunning = false;
+    }
+});
+
 async function run() {
     console.log("\x1b[34mopentdb-scraper\x1b[0m");
+    console.log("Press Q to stop at any time.");
 
     const tokenRes = await fetch(
         "https://opentdb.com/api_token.php?command=request"
@@ -29,7 +51,7 @@ async function run() {
 
     console.log();
 
-    while (true) {
+    while (keepRunning) {
 
         const response = await fetch(`${url}&amount=50`);
         const data = await response.json();
@@ -92,6 +114,8 @@ async function run() {
     );
 
     console.log("Saved opentdb.json");
+
+    process.exit();
 }
 
 run();
