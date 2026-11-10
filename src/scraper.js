@@ -43,7 +43,7 @@ async function run() {
 
     const url = `https://opentdb.com/api.php?token=${token}`;
 
-    let openTdbJson = {
+    let output = {
         results: []
     };
 
@@ -83,7 +83,7 @@ async function run() {
                     const finalData = await finalResponse.json();
 
                     if (finalData.results) {
-                        openTdbJson.results.push(...finalData.results);
+                        output.results.push(...finalData.results);
                         totalFetched += finalData.results.length;
                     }
                 }
@@ -97,7 +97,7 @@ async function run() {
             break;
         }
 
-        openTdbJson.results.push(...data.results);
+        output.results.push(...data.results);
         totalFetched += data.results.length;
 
         // OpenTDB rate limit is ~5 seconds
@@ -108,9 +108,14 @@ async function run() {
 
     console.log(`Finished, fetched ${totalFetched} questions`);
 
+    // Filter results for uniqueness
+    const uniqueMap = new Map(output.results.map(obj => [obj.question, obj]));
+    output.results = Array.from(uniqueMap.values());
+    console.log(`Result, ${output.results.length} unique questions`);
+
     fs.writeFileSync(
         "./results/opentdb.json",
-        JSON.stringify(openTdbJson, null, "\t")
+        JSON.stringify(output, null, "\t")
     );
 
     console.log("Saved opentdb.json");
