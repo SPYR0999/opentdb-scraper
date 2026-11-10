@@ -119,7 +119,7 @@ async function run() {
     console.log(`Finished, fetched ${totalFetched} questions`);
 
     fs.writeFileSync(
-        "opentdb.json",
+        "./results/opentdb.json",
         args.beautify
             ? JSON.stringify(openTdbJson, null, "\t")
             : JSON.stringify(openTdbJson)

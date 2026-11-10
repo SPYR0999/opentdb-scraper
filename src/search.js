@@ -2,7 +2,7 @@ import fs from 'fs';
 import readline from 'readline';
 
 // Path to your downloaded JSON file
-const FILE_PATH = './opentdb.json'; 
+const FILE_PATH = './results/opentdb.json'; 
 
 // Load and parse the JSON file safely
 let triviaData = [];
