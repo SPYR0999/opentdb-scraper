@@ -1,6 +1,6 @@
 import fetch from "node-fetch";
-import fs from "fs";
 import readline from "readline";
+import combine from "./combine.js";
 
 const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
@@ -113,12 +113,7 @@ async function run() {
     output.results = Array.from(uniqueMap.values());
     console.log(`Result, ${output.results.length} unique questions`);
 
-    fs.writeFileSync(
-        "./results/opentdb.json",
-        JSON.stringify(output, null, "\t")
-    );
-
-    console.log("Saved opentdb.json");
+    combine(output.results);
 
     process.exit();
 }
