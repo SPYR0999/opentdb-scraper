@@ -1,6 +1,5 @@
 import fetch from "node-fetch";
 import fs from "fs";
-import { exit } from "process";
 
 const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
@@ -15,7 +14,7 @@ async function run() {
 
     if (tokenJson.response_code !== 0) {
         console.error("Failed to create token.");
-        exit(-1);
+        process.exit(-1);
     }
 
     const token = tokenJson.token;
