@@ -4,7 +4,7 @@
   "description": "Scrapes OpenTDB questions",
   "main": "src/index.js",
   "scripts": {
-    "start": "node src/index.js"
+    "scrape": "node src/scraper.js"
   },
   "keywords": [],
   "author": "kickturn",
