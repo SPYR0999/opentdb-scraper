@@ -30941,11 +30941,11 @@
 			"difficulty": "easy",
 			"category": "Art",
 			"question": "Who painted the Mona Lisa?",
-			"correct_answer": "Leonardo da Vinci",
+			"correct_answer": "Leonardo da Vinci ",
 			"incorrect_answers": [
 				"Pablo Picasso",
-				"Claude Monet",
-				"Vincent van Gogh"
+				" Vincent van Gogh",
+				"Michelangelo"
 			]
 		},
 		{
@@ -61960,6 +61960,18 @@
 			"correct_answer": "False",
 			"incorrect_answers": [
 				"True"
+			]
+		},
+		{
+			"type": "multiple",
+			"difficulty": "easy",
+			"category": "Geography",
+			"question": "Which of these African regions does not directly border the Democratic Republic of The Congo?",
+			"correct_answer": "Sudan",
+			"incorrect_answers": [
+				"Central African Republic",
+				"Tanzania",
+				"Zambia"
 			]
 		}
 	]

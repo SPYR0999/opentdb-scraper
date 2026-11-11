@@ -2,6 +2,7 @@
   "name": "opentdb-scraper",
   "version": "1.0.0",
   "description": "Scrapes OpenTDB questions",
+  "author": "Alexandre Bergeron",
   "main": "src/interface.js",
   "scripts": {
     "start": "node ./src/interface.js",
@@ -9,8 +10,6 @@
     "search": "node -e \"import('./src/search.js').then(m => m.default())\"",
     "combine": "node -e \"import('./src/combine.js').then(m => m.default())\""
   },
-  "keywords": [],
-  "author": "kickturn",
   "license": "ISC",
   "type": "module",
   "dependencies": {
