@@ -3,7 +3,7 @@ import * as he from "he";
 
 const filePath = "./results/opentdb.json";
 
-export default function combine(newData = []) {
+export default async function combine(newData = []) {
 	if (!Array.isArray(newData)) {
 		throw new Error("New data must be supplied in array format.");
 	}
@@ -50,5 +50,3 @@ export default function combine(newData = []) {
 		console.error("An error occurred while updating the JSON file:", e);
 	}
 }
-
-combine();

@@ -23,12 +23,12 @@ const rl = readline.createInterface({
     output: process.stdout
 });
 
-function promptSearch() {
     rl.question('\nEnter a keyword to search (or type "exit" to quit): ', (keyword) => {
         if (keyword.toLowerCase() === 'exit') {
             rl.close();
             return;
         }
+export default function promptSearch() {
 
         if (!keyword.trim()) {
             console.log('Please enter a valid keyword.');
@@ -63,5 +63,3 @@ function promptSearch() {
     });
 }
 
-// Start the search interface
-promptSearch();

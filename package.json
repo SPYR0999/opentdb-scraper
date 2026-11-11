@@ -4,9 +4,9 @@
   "description": "Scrapes OpenTDB questions",
   "main": "src/index.js",
   "scripts": {
-    "scrape": "node src/scraper.js",
-    "search": "node src/search.js",
-    "combine": "node src/combine.js"
+    "scrape": "node -e \"import('./src/scraper.js').then(m => m.default())\"",
+    "search": "node -e \"import('./src/search.js').then(m => m.default())\"",
+    "combine": "node -e \"import('./src/combine.js').then(m => m.default())\""
   },
   "keywords": [],
   "author": "kickturn",
