@@ -21,11 +21,9 @@ export default async function combine(newData = []) {
 
 		// Combine datasets
 		const combinedData = [...existingData, ...newData];
-		const uniqueMap = new Map(combinedData.map(obj => [obj.question, obj]));
-		const uniqueContent = Array.from(uniqueMap.values());
 
 		// Clean up HTML entities
-		const cleanedContent = uniqueContent.map(el => {
+		const cleanedData = combinedData.map(el => {
 			// Create a shallow copy of the object
 			const newObj = {...el};
 
@@ -39,9 +37,13 @@ export default async function combine(newData = []) {
 			return newObj;
 		});
 
+		// Filter duplicates
+		const uniqueMap = new Map(cleanedData.map(obj => [obj.question, obj]));
+		const uniqueContent = Array.from(uniqueMap.values());
+
 		fs.writeFileSync(
 			filePath,
-			JSON.stringify({results: cleanedContent}, null, "\t")
+			JSON.stringify({results: uniqueContent}, null, "\t")
 		);
 
 		clack.log.message(`Existing data: ${existingData.length} questions`);
