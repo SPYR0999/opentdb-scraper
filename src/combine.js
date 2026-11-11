@@ -1,5 +1,6 @@
 import fs from "fs";
 import * as he from "he";
+import * as clack from "@clack/prompts";
 
 const filePath = "./results/opentdb.json";
 
@@ -15,7 +16,7 @@ export default async function combine(newData = []) {
 			const fileContent = fs.readFileSync(filePath);
 			existingData = JSON.parse(fileContent).results;
 		} else {
-			console.log("File not found. It will be created.");
+			clack.log.warn("File not found. It will be created.");
 		}
 
 		// Combine datasets
@@ -43,10 +44,9 @@ export default async function combine(newData = []) {
 			JSON.stringify({results: cleanedContent}, null, "\t")
 		);
 
-		console.log(`Incoming data: ${newData.length} questions`);
-		console.log(`Existing data: ${existingData.length} questions`);
-		console.log(`New total: ${cleanedContent.length} questions`);
+		clack.log.message(`Existing data: ${existingData.length} questions`);
+		clack.log.success(`New total: ${uniqueContent.length} questions`);
 	} catch (e) {
-		console.error("An error occurred while updating the JSON file:", e);
+		clack.log.error("An error occurred while updating the JSON file:", e);
 	}
 }
