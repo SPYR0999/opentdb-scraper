@@ -2,8 +2,9 @@
   "name": "opentdb-scraper",
   "version": "1.0.0",
   "description": "Scrapes OpenTDB questions",
-  "main": "src/index.js",
+  "main": "src/interface.js",
   "scripts": {
+    "start": "node ./src/interface.js",
     "scrape": "node -e \"import('./src/scraper.js').then(m => m.default())\"",
     "search": "node -e \"import('./src/search.js').then(m => m.default())\"",
     "combine": "node -e \"import('./src/combine.js').then(m => m.default())\""
